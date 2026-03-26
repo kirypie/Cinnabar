@@ -471,22 +471,17 @@ NEO
 allprojects {
     repositories {
         mavenCentral()
+        maven { url 'https://maven.neoforged.net' }
     }
     
     tasks.withType(JavaCompile).configureEach {
         options.compilerArgs.add('--enable-preview')
     }
+}
 
+subprojects {
     dependencies {
-        // Принудительно ставим самую свежую версию LWJGL
         implementation platform('org.lwjgl:lwjgl-bom:3.3.4')
-        
-        // Подключаем все модули, которые могут содержать Vulkan константы
-        implementation 'org.lwjgl:lwjgl'
         implementation 'org.lwjgl:lwjgl-vulkan'
-        
-        // Добавляем нативные библиотеки (иногда без них не видит символы)
-        runtimeOnly 'org.lwjgl:lwjgl::natives-linux'
-        runtimeOnly 'org.lwjgl:lwjgl-vulkan::natives-linux'
     }
 }
