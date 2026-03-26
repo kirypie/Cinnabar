@@ -9,9 +9,7 @@ plugins {
 }
 
 def getGitDescribedVersion = { ->
-    return providers.exec {
-        commandLine 'git', 'describe', '--tags', '--dirty=-local', '--candidates=100'
-    }.standardOutput.asText.get().trim()
+    return "1.0.0"
 }
 
 def getGitDescribedVersionWithMcVersion = { ->
@@ -19,7 +17,7 @@ def getGitDescribedVersionWithMcVersion = { ->
 }
 
 allprojects {
-    version = getGitDescribedVersion()
+    version = "1.0.0"
     group = mod_group_id
 }
 
