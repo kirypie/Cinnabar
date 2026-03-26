@@ -477,7 +477,11 @@ allprojects {
         options.compilerArgs.add('--enable-preview')
     }
 
-    dependencies {
-        implementation 'org.lwjgl:lwjgl-vulkan:3.3.4'
+    configurations.configureEach {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.lwjgl') {
+                details.useVersion '3.3.4'
+            }
+        }
     }
 }
