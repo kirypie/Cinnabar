@@ -477,3 +477,11 @@ subprojects {
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add('--enable-preview')
 }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.lwjgl:lwjgl-vulkan:3.3.3'
+}
