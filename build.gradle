@@ -468,3 +468,6 @@ file("loader/src/build.properties").text = """
 // to switch mode, refresh the gradle project of the respective loader
 NEO
 """
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add('--enable-preview')
+}
