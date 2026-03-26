@@ -472,18 +472,12 @@ allprojects {
     repositories {
         mavenCentral()
     }
-
+    
     tasks.withType(JavaCompile).configureEach {
         options.compilerArgs.add('--enable-preview')
     }
 
-    configurations.all {
-        resolutionStrategy {
-            eachDependency { DependencyResolveDetails details ->
-                if (details.requested.group == 'org.lwjgl') {
-                    details.useVersion '3.3.4'
-                }
-            }
-        }
+    dependencies {
+        implementation 'org.lwjgl:lwjgl-vulkan:3.3.4'
     }
 }
