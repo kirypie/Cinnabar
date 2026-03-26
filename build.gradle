@@ -468,17 +468,20 @@ file("loader/src/build.properties").text = """
 // to switch mode, refresh the gradle project of the respective loader
 NEO
 """
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation 'org.lwjgl:lwjgl-vulkan:3.3.4'
-    implementation 'org.lwjgl:lwjgl-vulkan:3.3.4:natives-linux'
-}
-
 allprojects {
+    repositories {
+        mavenCentral()
+    }
+    
     tasks.withType(JavaCompile).configureEach {
         options.compilerArgs.add('--enable-preview')
     }
 }
+
+subprojects {
+    dependencies {
+        implementation platform('org.lwjgl:lwjgl-bom:3.3.4')
+        implementation 'org.lwjgl:lwjgl-vulkan'
+    }
+}
+
